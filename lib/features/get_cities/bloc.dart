@@ -18,7 +18,7 @@ class GetCitiesBloc extends Bloc <CitiesEvents,GetCitiesStates>{
 
     emit(GetCitiesLoadingStates());
     final response=await DioHelper().getData("cities/1");
-    if(response!.isSuccess){
+    if(response.isSuccess){
      final model = GetCitiesData.fromJson(response.response!.data);
       emit(GetCitiesSuccessStates(list: model.list));
 

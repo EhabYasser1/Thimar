@@ -39,10 +39,10 @@ class _NotificationPageState extends State<NotificationPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("الاستشعارات"),
+        title: const Text("الاستشعارات"),
       ),
       body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView.builder(
             itemCount: 3,
             itemBuilder: (context, index) => _Item(model: list[index]),
@@ -54,7 +54,7 @@ class _NotificationPageState extends State<NotificationPage> {
 class _Item extends StatelessWidget {
   final NotificationModel model;
 
-  const _Item({super.key, required this.model});
+  const _Item({required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -70,14 +70,14 @@ class _Item extends StatelessWidget {
         //   )
         // ]
       ),
-      margin: EdgeInsetsDirectional.only(end: 10, start: 10, bottom: 6, top: 6),
+      margin: const EdgeInsetsDirectional.only(end: 10, start: 10, bottom: 6, top: 6),
       height: 80,
       child: Row(
         children: [
           Container(
             height: 33,
             width: 33,
-            padding: EdgeInsets.all(6),
+            padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(9),
               color: Theme.of(context).primaryColor.withOpacity(.12),
@@ -85,7 +85,7 @@ class _Item extends StatelessWidget {
             child: Image.network(model.image,
                 height: 20, width: 20, fit: BoxFit.scaleDown),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Expanded(
@@ -94,24 +94,24 @@ class _Item extends StatelessWidget {
               children: [
                 Text(
                   model.title,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
                 Text(
                   model.body,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w500,
                       color: Color(0xff989898)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 ),
                 Text(
                   model.time,
-                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                  style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
                 ),
               ],
             ),

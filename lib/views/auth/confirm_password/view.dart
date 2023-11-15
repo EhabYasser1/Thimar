@@ -18,7 +18,7 @@ class _ConfirmPasswordViewState extends State<ConfirmPasswordView> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsetsDirectional.only(
+          padding: const EdgeInsetsDirectional.only(
               bottom: 20, top: 20, end: 16, start: 16),
           children: [
             Image.asset(
@@ -26,7 +26,7 @@ class _ConfirmPasswordViewState extends State<ConfirmPasswordView> {
               height: 125,
               width: 130,
             ),
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             Text(
@@ -36,14 +36,14 @@ class _ConfirmPasswordViewState extends State<ConfirmPasswordView> {
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "أدخل كلمة المرور الجديدة",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
             ),
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             AppInput(
@@ -76,11 +76,11 @@ class _ConfirmPasswordViewState extends State<ConfirmPasswordView> {
                 paddingBottom: 25),
             FilledButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   "تغيير كلمة المرور",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 185,
             ),
             Row(
@@ -95,9 +95,9 @@ class _ConfirmPasswordViewState extends State<ConfirmPasswordView> {
                 ),
                 TextButton(
                     onPressed: () {
-                      navigatorTo(RegisterView());
+                      navigatorTo(const RegisterView());
                     },
-                    child: Text("تسجيل الدخول",
+                    child: const Text("تسجيل الدخول",
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 19,

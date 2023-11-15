@@ -2,63 +2,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled3/core/logic/help_navigator.dart';
-import 'package:untitled3/views/home/pages/favorite/bloc.dart';
-import 'package:untitled3/views/home/pages/favorite/events.dart';
-import 'package:untitled3/views/home/pages/favorite/model.dart';
-import 'package:untitled3/views/home/pages/favorite/states.dart';
+import 'package:untitled3/features/categories/model.dart';
+import 'package:untitled3/features/category_product/bloc.dart';
+import 'package:untitled3/features/category_product/states.dart';
+import 'package:untitled3/features/product/model.dart';
+import 'package:untitled3/features/product_rate/model.dart';
 
-class FavoritePage extends StatefulWidget {
-  const FavoritePage({super.key});
+import 'event.dart';
+import 'model.dart';
+
+class CategoryProductView extends StatefulWidget {
+  final CategoryModel model;
+  const CategoryProductView({super.key, required this.model});
+
 
   @override
-  State<FavoritePage> createState() => _FavoritePageState();
+  State<CategoryProductView> createState() => _CategoryProductViewState();
 }
 
-class _FavoritePageState extends State<FavoritePage> {
-  late FavoriteBloc bloc;
+class _CategoryProductViewState extends State<CategoryProductView> {
+  late CategoryProductBloc bloc;
   @override
   void initState() {
-    super.initState();
     bloc = BlocProvider.of(context);
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    bloc.add(GetFavoriteEvent());
-    return  Scaffold(
-      appBar: AppBar(
-        title: Text("المفضلة",),
-      ),
-      body:BlocBuilder<FavoriteBloc,GetFavoritesStates>(
+    bloc.add(CategoryProductEvent(model: widget.model));
+    return Scaffold(
+      appBar: AppBar(),
+      body: BlocBuilder<CategoryProductBloc,CategoryProductStates>(
         builder: (context, state) {
-          if(state is GetFavoriteLoadingStates){
+          if(state is CategoryProductLoadingStates){
             return Center(child: CircularProgressIndicator());
-          }else if(state is GetFavoriteSuccessStates){
+          }else if(state is CategoryProductSuccessStates){
             return GridView.builder(
 
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount:2,mainAxisSpacing:10,crossAxisSpacing: 10,childAspectRatio: 163 / 250,
               ),
-              itemBuilder: (context, index) => ItemsGridFavorite(model:state.list[index]),
+              itemBuilder: (context, index) => ItemsGridCategoryProduct(model:state.list[index]),
               itemCount:state.list.length ,
-             );
+            );
           }else{
             return Text("Failed");
           }
         },
       ) ,
-
-
     );
   }
 }
 
+class ItemsGridCategoryProduct extends StatelessWidget {
+  final ProductModel model;
 
+  const ItemsGridCategoryProduct({super.key, required this.model});
 
-
-class ItemsGridFavorite extends StatelessWidget {
-  final FavoriteModel model;
-  const ItemsGridFavorite({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class ItemsGridFavorite extends StatelessWidget {
               ),
             ),
           ),
-           SizedBox(height: 3.h,),
+          SizedBox(height: 3.h,),
           Text(model.title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -110,13 +110,13 @@ class ItemsGridFavorite extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
           ),
-           SizedBox(
+          SizedBox(
             height: 3.h,
           ),
-           Text("السعر/ 1كجم",
+          Text("السعر/ 1كجم",
             style: TextStyle(color: Color(0xff808080),fontSize: 12.sp,fontWeight: FontWeight.w400),
           ),
-           SizedBox(
+          SizedBox(
             height: 3.h,
           ),
           Text.rich(

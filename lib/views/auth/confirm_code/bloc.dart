@@ -9,7 +9,6 @@ import '../confirm_password/view.dart';
 import '../login_view/view.dart';
 import 'events.dart';
 import 'states.dart';
-import 'view.dart';
 
 class ConfirmCodeBloc extends Bloc<ConfirmCodeEvents,ConfirmCodeStates>{
   ConfirmCodeBloc():super(ConfirmCodeStates()){
@@ -35,7 +34,7 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvents,ConfirmCodeStates>{
       );
       if (response!.isSuccess) {
         showMessage(response.message, type: MessageType.success);
-        navigatorTo(LoginView());
+        navigatorTo(const LoginView());
         emit(ConfirmCodeSuccessState());
       } else {
         showMessage(response.message);
@@ -57,7 +56,7 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvents,ConfirmCodeStates>{
       );
       if(response!.isSuccess){
         showMessage(response.message, type: MessageType.success);
-        navigatorTo(ConfirmPasswordView());
+        navigatorTo(const ConfirmPasswordView());
         //navigatorTo(ConfirmCodeView(isActive: false, phone: event.phone));
         emit(ConfirmCodeSuccessState());
       }else{

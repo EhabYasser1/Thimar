@@ -48,6 +48,8 @@ dependencies:
   image_picker: ^1.0.4
   audioplayers: ^5.1.0
   social_media_recorder: ^1.0.0
+  flutter_screenutil: ^5.9.0
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

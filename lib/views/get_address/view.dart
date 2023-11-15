@@ -8,7 +8,7 @@ class GetAddressView extends StatefulWidget {
   State<GetAddressView> createState() => _GetAddressViewState();
 }
  Set<Marker> markers={
-  Marker(
+  const Marker(
       markerId: MarkerId("1"),
     position: LatLng(31.0181913, 31.3884559),
   ),
@@ -19,7 +19,7 @@ class _GetAddressViewState extends State<GetAddressView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("إضافة عنوان"),
+        title: const Text("إضافة عنوان"),
       ),
       body: ListView(
         children: [
@@ -31,7 +31,7 @@ class _GetAddressViewState extends State<GetAddressView> {
               onTap: (argument) {
 
                 markers.add( Marker(
-                  markerId: MarkerId("1"),
+                  markerId: const MarkerId("1"),
                   position: LatLng(argument.latitude,argument.longitude),
                 ));
                 setState(() {
@@ -39,7 +39,7 @@ class _GetAddressViewState extends State<GetAddressView> {
                 });
               },
               initialCameraPosition:
-                  CameraPosition(zoom: 14,target: LatLng(31.0181913, 31.3884559)),
+                  const CameraPosition(zoom: 14,target: LatLng(31.0181913, 31.3884559)),
 
             ),
           )

@@ -16,12 +16,12 @@ class _AppButtonState extends State<AppButton> {
   Widget build(BuildContext context) {
     if(widget.isLoading)
       {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       }
-    return FilledButton(
+    return FilledButton(style: ButtonStyle(),
         onPressed:widget.onPressed,
         child: Text(
-          widget.text, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          widget.text, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ));
   }
 }

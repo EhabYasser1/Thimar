@@ -35,7 +35,7 @@ class LoginBloc extends Bloc<LoginEvents,LoginStates> {
       if(response!.isSuccess){
         showMessage(response.message,type: MessageType.success);
         emit(LoginSuccessStates());
-        navigatorTo(HomeView());
+        navigatorTo(const HomeView());
       }else{
         showMessage(response.message);
         emit(LoginFailedStates());

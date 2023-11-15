@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled3/core/design/app_button.dart';
 import 'package:untitled3/core/design/app_input.dart';
-import 'package:untitled3/core/logic/dio_helper.dart';
 import 'package:untitled3/core/logic/help_navigator.dart';
 
 
@@ -34,7 +33,7 @@ class _RegisterViewState extends State<RegisterView> {
             child: Form(
               key: bloc.formKey,
               child: ListView(
-                padding: EdgeInsetsDirectional.only(
+                padding: const EdgeInsetsDirectional.only(
                     bottom: 20, top: 20, end: 16, start: 16),
                 children: [
                   Image.asset(
@@ -42,7 +41,7 @@ class _RegisterViewState extends State<RegisterView> {
                     height: 125,
                     width: 130,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 21,
                   ),
                   Text(
@@ -52,14 +51,14 @@ class _RegisterViewState extends State<RegisterView> {
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).primaryColor),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "يمكنك تسجيل حساب جديد الأن",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                   AppInput(
@@ -93,7 +92,7 @@ class _RegisterViewState extends State<RegisterView> {
                         onTap: () async {
                           var result = await showModalBottomSheet(
                               context: context,
-                              builder: (context) => CitiesSheet());
+                              builder: (context) => const CitiesSheet());
                           if (result != null) {
                             bloc.selectedModel = result;
                             setState(() {});
@@ -126,12 +125,12 @@ class _RegisterViewState extends State<RegisterView> {
                                   bloc.selectedModel = null;
                                   setState(() {});
                                 },
-                                icon: Icon(Icons.clear, color: Colors.red),
+                                icon: const Icon(Icons.clear, color: Colors.red),
                               )
                           ],
                         )),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   AppInput(
                     controller: bloc.passwordController,
                     validator: (value) {
@@ -173,7 +172,7 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Row(
@@ -188,9 +187,9 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                       TextButton(
                           onPressed: () {
-                            navigatorTo(LoginView());
+                            navigatorTo(const LoginView());
                           },
-                          child: Text("تسجيل الدخول",
+                          child: const Text("تسجيل الدخول",
                               style: TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontSize: 19,

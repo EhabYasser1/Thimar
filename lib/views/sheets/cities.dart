@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled3/features/get_cities/states.dart';
@@ -22,7 +21,7 @@ class _CitiesSheetState extends State<CitiesSheet> {
 
         return Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Text(
@@ -37,11 +36,11 @@ class _CitiesSheetState extends State<CitiesSheet> {
               builder: (context, state) {
 
               if(state is GetCitiesLoadingStates){
-                return Expanded(child: Center(child: CircularProgressIndicator()));
+                return const Expanded(child: Center(child: CircularProgressIndicator()));
               } else if (state is GetCitiesSuccessStates){
                return Expanded(
                   child: ListView.builder(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     itemCount: state.list.length,
                     itemBuilder: (context, index) => ItemCity(
                       model: state.list[index],
@@ -49,7 +48,7 @@ class _CitiesSheetState extends State<CitiesSheet> {
                   ),
                 );
               }else{
-                return Text("Faild");
+                return const Text("Faild");
               }
             },)
 
@@ -72,8 +71,8 @@ class ItemCity extends StatelessWidget {
         Navigator.pop(context, model);
       },
       child: Container(
-        padding: EdgeInsets.all(8),
-        margin: EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Theme.of(context).primaryColor.withOpacity(.1)),

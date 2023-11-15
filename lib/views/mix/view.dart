@@ -42,16 +42,16 @@ class _MixViewState extends State<MixView> {
                   setState(() {});
                 }
               },
-              child: Text("Show")),
+              child: const Text("Show")),
           ElevatedButton(onPressed: (){
             showDialog(context: context, builder: (context) => AlertDialog(
-              title: Text("HELLO"),
+              title: const Text("HELLO"),
               actions: [
-                OutlinedButton(onPressed: (){}, child: Text("go")),
-                FilledButton(onPressed: (){}, child: Text("Click")),
+                OutlinedButton(onPressed: (){}, child: const Text("go")),
+                FilledButton(onPressed: (){}, child: const Text("Click")),
               ],
             ),);
-          }, child: Text("Click")),
+          }, child: const Text("Click")),
       SocialMediaRecorder(
 
         sendRequestFunction: (soundFile, time) => player.play(DeviceFileSource(soundFile.path)),

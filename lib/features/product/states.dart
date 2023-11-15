@@ -12,3 +12,7 @@ class ProductsSuccessState extends ProductsStates{
   ProductsSuccessState({required this.list});
 
 }
+class FavoriteLoadingStates extends ProductsStates{}
+class FavoriteSuccessStates extends ProductsStates{}
+class FavoriteFailedStates extends ProductsStates{}
+

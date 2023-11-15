@@ -17,8 +17,8 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-   Timer(Duration(seconds: 3), () {
-     Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginView(),));
+   Timer(const Duration(seconds: 3), () {
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginView(),));
    });
   }
   @override
@@ -29,10 +29,10 @@ class _SplashViewState extends State<SplashView> {
         child: Stack(
           children: [
             Positioned(
-                child: Image.asset("assets/image/side.png"),
                 bottom: -80,
-                left: 60),
-            Image.asset("assets/image/splash_bg.png", color: Color(0xff4C8613)),
+                left: 60,
+                child: Image.asset("assets/image/side.png")),
+            Image.asset("assets/image/splash_bg.png", color: const Color(0xff4C8613)),
             Center(
                 child: FadeInDownBig(
                   child: FadeIn(

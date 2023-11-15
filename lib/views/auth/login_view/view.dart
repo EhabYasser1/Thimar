@@ -1,10 +1,8 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled3/core/design/app_button.dart';
 import 'package:untitled3/core/design/app_input.dart';
-import 'package:untitled3/core/logic/dio_helper.dart';
 import 'package:untitled3/core/logic/help_navigator.dart';
 
 
@@ -35,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
             child: Form(
               key:bloc.formKey ,
               child: ListView(
-                padding: EdgeInsetsDirectional.only(
+                padding: const EdgeInsetsDirectional.only(
                     bottom: 20, top: 20, end: 16, start: 16),
                 children: [
                   Image.asset(
@@ -43,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
                     height: 125,
                     width: 130,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 21,
                   ),
                   Text(
@@ -53,14 +51,14 @@ class _LoginViewState extends State<LoginView> {
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).primaryColor),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "يمكنك تسجيل الدخول الأن",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 28,
                   ),
                   AppInput(
@@ -77,7 +75,7 @@ class _LoginViewState extends State<LoginView> {
                       labelText: "رقم الجوال",
                       icon: "assets/icon/Phone.png",
                       isPhone: true),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   AppInput(
@@ -100,16 +98,16 @@ class _LoginViewState extends State<LoginView> {
                       alignment: AlignmentDirectional.centerEnd,
                       child: TextButton(
                           onPressed: () {
-                            navigatorTo(ForgotView());
+                            navigatorTo(const ForgotView());
                           },
-                          child: Text(
+                          child: const Text(
                             "نسيت كلمة المرور ؟",
                             style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 16,
                                 color: Color(0xff707070)),
                           ))),
-                  SizedBox(
+                  const SizedBox(
                     height: 28,
                   ),
                   BlocBuilder(
@@ -122,7 +120,7 @@ class _LoginViewState extends State<LoginView> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Row(
@@ -137,9 +135,9 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       TextButton(
                           onPressed: () {
-                            navigatorTo(RegisterView());
+                            navigatorTo(const RegisterView());
                           },
-                          child: Text("تسجيل الان",
+                          child: const Text("تسجيل الان",
                               style: TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontSize: 19,

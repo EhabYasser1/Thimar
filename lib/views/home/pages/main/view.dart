@@ -4,14 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled3/core/design/app_button.dart';
 import 'package:untitled3/core/design/app_input.dart';
+import 'package:untitled3/core/logic/help_navigator.dart';
 import 'package:untitled3/features/categories/bloc.dart';
 import 'package:untitled3/features/categories/states.dart';
+import 'package:untitled3/features/category_product/event.dart';
+import 'package:untitled3/features/category_product/states.dart';
 import 'package:untitled3/features/product/bloc.dart';
 import 'package:untitled3/features/product/states.dart';
 import 'package:untitled3/features/slider/bloc.dart';
 
 import '../../../../features/categories/model.dart';
+import '../../../../features/category_product/bloc.dart';
+import '../../../../features/category_product/view.dart';
 import '../../../../features/product/model.dart';
+import '../../../../features/product_details/view.dart';
 import '../../../../features/slider/states.dart';
 
 class MainPage extends StatefulWidget {
@@ -22,27 +28,15 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  // List<ListViewHomeModel> list= [
-  //   ListViewHomeModel(image:"assets/icon/vegetable.png" , title: "الخضار", color: Color(0xffF6F9F3)),
-  //   ListViewHomeModel(image:"assets/icon/fruit.png" , title: "الفواكه", color: Color(0xffFFFAEE)),
-  //   ListViewHomeModel(image:"assets/icon/steak.png" , title: "اللحوم", color: Color(0xffFFF8F6)),
-  //   ListViewHomeModel(image:"assets/icon/spices.png" , title: "البهارات", color: Color(0xffF6FCFE)),
-  //   ListViewHomeModel(image:"assets/icon/dates.png" , title: "التمور", color: Color(0xffFDF7F5)),
-  // ];
-  // List<String> images = [
-  //   "https://behealthis.com/f/e7/7e/e77e8765926c70da1ef50385c4c6aa8a.jpg",
-  //   "https://thumbs.dreamstime.com/b/assorted-raw-organic-vegetables-isolated-white-composition-detox-diet-99751693.jpg",
-  //   "https://cdn.futura-sciences.com/buildsv6/images/wide1920/e/b/b/ebb5f44e91_50191364_alimentation-nutrition.jpg"
-  // ];
   int currentIndex=0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: const MyAppBar(),
       body: ListView(
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(16),
             child: AppInput(
                 labelText: "ابحث عن ماتريد؟", icon: "assets/icon/search.png"),
@@ -50,7 +44,7 @@ class _MainPageState extends State<MainPage> {
           BlocBuilder<SlidersBloc,SliderStates>(
             builder: (context, state) {
               if(state is SliderLoadingState){
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }else if (state is SliderSuccessState){
                 return Column(
                   children: [
@@ -76,14 +70,14 @@ class _MainPageState extends State<MainPage> {
 
                       ),
                     ),
-                    SizedBox(height: 7,),
+                    const SizedBox(height: 7,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(state.list.length, (index) => Padding(
 
                         padding: const EdgeInsetsDirectional.only(end: 3),
                         child: CircleAvatar(radius:index==currentIndex?6:4,
-                          backgroundColor: index==currentIndex?Theme.of(context).primaryColor.withOpacity(.30):Color(0xff61B80C).withOpacity(.40),
+                          backgroundColor: index==currentIndex?Theme.of(context).primaryColor.withOpacity(.30):const Color(0xff61B80C).withOpacity(.40),
 
                         ),
                       )),
@@ -92,54 +86,57 @@ class _MainPageState extends State<MainPage> {
                   ],
                 );
               }else{
-                return Text("Faild");
+                return const Text("Faild");
               }
 
             },
 
           ),
-          SizedBox(height: 15,),
-          Row(
-            children: [
-              Expanded(child: Padding(
-                padding: const EdgeInsets.only(right:16 ),
-                child: Text("الأقسام",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w900),),
-              )),
-              TextButton(onPressed: (){}, child: Text("عرض الكل",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),))
-            ],
+          const SizedBox(height: 15,),
+          Padding(
+            padding: EdgeInsets.only(right:16 ),
+            child: Text("الأقسام",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w900),),
           ),
+
           BlocBuilder<CategoriesBloc,CategoriesStates>(
             builder: (context, state) {
               if(state is CategoriesLoadingState){
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }else if (state is CategoriesSuccessState){
-                 return SizedBox(
-                  height: 110,
-                  child: ListView.builder(
-                    scrollDirection:Axis.horizontal ,
-                    itemCount: state.list.length,
-                    itemBuilder: (context, index) =>ItemListView(model:state.list[index]) ,),
-                );
+                 return Padding(
+                   padding: const EdgeInsets.only(right: 16),
+                   child: SizedBox(
+                    height: 110,
+                    child: ListView.separated(
+
+                      separatorBuilder: (context, index) => SizedBox(width: 18),
+                      scrollDirection:Axis.horizontal ,
+                      itemCount: state.list.length,
+                      itemBuilder: (context, index) =>ItemListView(model:state.list[index]) ,),
+                ),
+                 );
               }else{
-                return Text("Faild");
+                return const Text("Faild");
               }
             },
 
 
           ),
-          Padding(
-            padding: const EdgeInsets.only(right:16 ),
+          const Padding(
+            padding: EdgeInsets.only(right:16 ),
             child: Text("الاصناف",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w900),),
           ),
           BlocBuilder<ProductsBloc,ProductsStates>(
+            buildWhen:  (previous, current) => current is ProductsLoadingState || current is ProductsSuccessState,
               builder: (context, state) {
-                if(state is ProductsLoadingState){
-                  return Center(child: CircularProgressIndicator());
+                if(state is ProductsFailedState){
+                  return  Text("Fialed $state");
+
                 }else if (state is ProductsSuccessState){
                   return GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount:2,mainAxisSpacing:10,crossAxisSpacing: 10,childAspectRatio: 163 / 250 ),
 
                     itemBuilder: (context, index) => ItemsProduct(model: state.list[index]),
@@ -147,7 +144,8 @@ class _MainPageState extends State<MainPage> {
                   );
 
                 }else{
-                  return Text("Fialed");
+                  return const Center(child: CircularProgressIndicator());
+
                 }
 
               },)
@@ -168,7 +166,7 @@ class ItemsProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(9),
+      padding: const EdgeInsets.all(9),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(17),
 
@@ -184,11 +182,16 @@ class ItemsProduct extends StatelessWidget {
                 children: [
                   Image.network(model.mainImage),
                   Container(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       vertical: 3,
                       horizontal: 10,
                     ),
-                    child: Text(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: const BorderRadiusDirectional.only(bottomStart: Radius.circular(11)),
+
+                    ),
+                    child: const Text(
                       "-45%",
                       textDirection: TextDirection.ltr,
                       style: TextStyle(
@@ -197,17 +200,12 @@ class ItemsProduct extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadiusDirectional.only(bottomStart: Radius.circular(11)),
-
-                    ),
                   )
                 ],
               ),
             ),
           ),
-          SizedBox(height: 3,),
+          const SizedBox(height: 3,),
           Text("طماطم",
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -215,13 +213,13 @@ class ItemsProduct extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 3,
           ),
-          Text("السعر/ 1كجم",
+          const Text("السعر/ 1كجم",
             style: TextStyle(color: Color(0xff808080),fontSize: 12,fontWeight: FontWeight.w400),
               ),
-          SizedBox(
+          const SizedBox(
             height: 3,
           ),
           Text.rich(
@@ -232,18 +230,19 @@ class ItemsProduct extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              children: [TextSpan(text: "\t"),
+              children: const [TextSpan(text: "\t"),
                 TextSpan(text:"56 ر.س" ,style:
               TextStyle(
                 decoration: TextDecoration.lineThrough,
                   fontSize: 13,fontWeight: FontWeight.bold))]
             )
           ),
-          SizedBox(height: 16,),
+          const SizedBox(height: 16,),
           SizedBox(
             height: 35,
             child: AppButton(text: "اضف للسلة",
               onPressed: () {
+              navigatorTo(ProductDetailsView(model: model,));
 
               },
             ),
@@ -290,9 +289,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return SafeArea(
       child: Container(
 
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         height: 60,
-        decoration: BoxDecoration(),
+        decoration: const BoxDecoration(),
         child: Row(
           children: [
             Image.asset(
@@ -301,7 +300,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               width: 20,
               fit: BoxFit.scaleDown,
             ),
-            SizedBox(
+            const SizedBox(
               width: 3,
             ),
             Text(
@@ -320,7 +319,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                         fontSize: 12,
                         fontWeight: FontWeight.w300,
                         color: Theme.of(context).primaryColor),
-                    children: [
+                    children: const [
                       TextSpan(text: "\n"),
                       TextSpan(
                           text: "شارع الملك فهد - جدة",
@@ -331,7 +330,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             Badge(
               alignment: AlignmentDirectional.topStart,
-              label: Text(
+              label: const Text(
                 "3",
                 style: TextStyle(fontSize: 6, fontWeight: FontWeight.bold),
               ),
@@ -339,13 +338,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Container(
                 width: 33,
                 height: 33,
-                padding: EdgeInsets.all(7),
-                child: SvgPicture.asset(
-                  "assets/icon/svg/cart.svg",
-                ),
+                padding: const EdgeInsets.all(7),
                 decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor.withOpacity(.13),
                     borderRadius: BorderRadius.circular(9)),
+                child: SvgPicture.asset(
+                  "assets/icon/svg/cart.svg",
+                ),
               ),
             )
           ],
@@ -354,7 +353,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Size get preferredSize => Size.fromHeight(60);
+  @override
+  Size get preferredSize => const Size.fromHeight(60);
 }
 
 class ItemListView extends StatelessWidget {
@@ -366,18 +366,24 @@ class ItemListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          child: Container(
-            width: 75,
-            child: Image.network(model.media,height: 37,width: 37,fit: BoxFit.scaleDown),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
+        Expanded ( child: 
+            GestureDetector(
+              child: Container(
+                width: 75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Image.network(model.media,height: 37,width: 37,fit: BoxFit.scaleDown),
+
+
+              ),
+              onTap: () {
+                navigatorTo(CategoryProductView(model: model,));
+
+              },
             ),
-
-
-          ),
         ),
-        Text(model.name,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),)
+        Text(model.name,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600),)
       ],
     );
   }

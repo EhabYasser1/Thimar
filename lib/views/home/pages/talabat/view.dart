@@ -12,7 +12,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("طلباتي"),
+        title: const Text("طلباتي"),
       ),
       body: SafeArea(
         child: ListView(
@@ -38,12 +38,12 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Text(
                               "${DateTime.now().year},${DateTime.now().month},${DateTime.now().day}"),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Row(
@@ -60,7 +60,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -75,7 +75,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -90,7 +90,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -121,7 +121,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 11, vertical: 5),
                             decoration: BoxDecoration(
                               color: Theme.of(context)
@@ -139,7 +139,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 31,
                           ),
                           Text(
@@ -177,12 +177,12 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Text(
                               "${DateTime.now().year},${DateTime.now().month},${DateTime.now().day}"),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Row(
@@ -199,7 +199,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -214,7 +214,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -229,7 +229,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -260,7 +260,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 11, vertical: 5),
                             decoration: BoxDecoration(
                               color: Theme.of(context)
@@ -278,7 +278,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 31,
                           ),
                           Text(
@@ -316,12 +316,12 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Text(
                               "${DateTime.now().year},${DateTime.now().month},${DateTime.now().day}"),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Row(
@@ -338,7 +338,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -353,7 +353,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -368,7 +368,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -399,7 +399,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 11, vertical: 5),
                             decoration: BoxDecoration(
                               color: Theme.of(context)
@@ -417,7 +417,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 31,
                           ),
                           Text(
@@ -455,12 +455,12 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Text(
                               "${DateTime.now().year},${DateTime.now().month},${DateTime.now().day}"),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Row(
@@ -477,7 +477,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -492,7 +492,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -507,7 +507,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -538,7 +538,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 11, vertical: 5),
                             decoration: BoxDecoration(
                               color: Theme.of(context)
@@ -556,7 +556,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 31,
                           ),
                           Text(
@@ -594,12 +594,12 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Text(
                               "${DateTime.now().year},${DateTime.now().month},${DateTime.now().day}"),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Row(
@@ -616,7 +616,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -631,7 +631,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -646,7 +646,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 3,
                               ),
                               Container(
@@ -677,7 +677,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 11, vertical: 5),
                             decoration: BoxDecoration(
                               color: Theme.of(context)
@@ -695,7 +695,7 @@ class _TalabatyPageState extends State<TalabatyPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 31,
                           ),
                           Text(

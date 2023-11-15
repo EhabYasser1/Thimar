@@ -17,11 +17,11 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
   List<Widget> pages = [
-    MainPage(),
-    TalabatyPage(),
-    NotificationPage(),
-    FavoritePage(),
-    MyAccPage(),
+    const MainPage(),
+    const TalabatyPage(),
+    const NotificationPage(),
+    const FavoritePage(),
+    const MyAccPage(),
   ];
   List<String> titles=[
     "الرئيسية",
@@ -46,7 +46,7 @@ class _HomeViewState extends State<HomeView> {
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Color(0xffAED489),
+        unselectedItemColor: const Color(0xffAED489),
         selectedItemColor: Colors.white,
         currentIndex: currentIndex,
         onTap: (value) {
@@ -57,8 +57,8 @@ class _HomeViewState extends State<HomeView> {
         items: List.generate(pages.length,
               (index) => BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icon/svg/${icons[index]}.svg",
-                color: currentIndex == index ? Colors.white : Color(0xffAED489)),
-            label: "${titles[index]}"),),
+                color: currentIndex == index ? Colors.white : const Color(0xffAED489)),
+            label: titles[index]),),
       ),
     );
   }

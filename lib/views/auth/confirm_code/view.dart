@@ -1,12 +1,8 @@
-import 'dart:io';
 
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:circular_countdown_timer/countdown_text_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:untitled3/core/design/app_input.dart';
-import 'package:untitled3/core/logic/dio_helper.dart';
 import 'package:untitled3/core/logic/help_navigator.dart';
 
 import '../register_view/view.dart';
@@ -30,7 +26,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsetsDirectional.only(
+          padding: const EdgeInsetsDirectional.only(
               bottom: 20, top: 20, end: 16, start: 16),
           children: [
             Image.asset(
@@ -38,7 +34,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
               height: 125,
               width: 130,
             ),
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             Text(widget.isActive?"تفعيل الحساب":
@@ -48,10 +44,10 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "أدخل الكود المكون من 4 أرقام المرسل علي رقم الجوال",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
             ),
@@ -60,17 +56,17 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                 Text(
                   "${widget.phone} ",
                   textDirection: TextDirection.ltr,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                 ),
                 TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "تغيير رقم الجوال",
                       style: TextStyle(decoration: TextDecoration.underline),
                     ))
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             BlocBuilder(
@@ -84,7 +80,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                   validator: (v) {
                     if (v!.isEmpty) {
                       return "بارجاء ادخال كود التفعيل";
-                    } else if (v!.length < 3){
+                    } else if (v.length < 3){
                       "يجب ادخال كود مكون من 4 ارقام";
                     }return null;
                   },
@@ -94,7 +90,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                     fieldHeight: 60,
                     fieldWidth: 70,
                     activeFillColor: Colors.white,
-                    inactiveColor: Color(0xffF3F3F3),
+                    inactiveColor: const Color(0xffF3F3F3),
                     selectedColor: Theme.of(context).primaryColor,
                   ),
                   keyboardType: TextInputType.number,
@@ -103,7 +99,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                 
               
             ),
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             FilledButton(
@@ -117,31 +113,31 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
 
 
                 },
-                child: Text(
+                child: const Text(
                   "تأكيد الكود",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 27,
             ),
-            Center(
+            const Center(
                 child: Text("لم تستلم الكود ؟\n يمكنك إعادة إرسال الكود بعد",
                     textAlign: TextAlign.center, style: TextStyle(height: 2))),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             bloc.isTimerFinished
                 ? Center(
                     child: OutlinedButton(
                         onPressed: () {
                           bloc.isTimerFinished=false;
                           setState(() {});
-                        }, child: Text("إعادة الإرسال")))
+                        }, child: const Text("إعادة الإرسال")))
                 : CircularCountDownTimer(
                     duration: 10,
                     initialDuration: 0,
                     width: 60,
                     height: 60,
                     ringColor: Theme.of(context).primaryColor,
-                    fillColor: Color(0xffD8D8D8),
+                    fillColor: const Color(0xffD8D8D8),
                     strokeWidth: 2,
                     strokeCap: StrokeCap.round,
                     textStyle: TextStyle(
@@ -155,7 +151,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                       setState(() {});
                     },
                   ),
-            SizedBox(
+            const SizedBox(
               height: 185,
             ),
             Row(
@@ -170,9 +166,9 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                 ),
                 TextButton(
                     onPressed: () {
-                      navigatorTo(RegisterView());
+                      navigatorTo(const RegisterView());
                     },
-                    child: Text("تسجيل الان",
+                    child: const Text("تسجيل الان",
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 19,

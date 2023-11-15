@@ -1,16 +1,13 @@
 
-import 'package:flutter/material.dart';
 
 class CategoriesData {
 
   late final List<CategoryModel> list;
-  late final String status;
-  late final String message;
+
 
   CategoriesData.fromJson(Map<String, dynamic> json){
     list = List.from(json['data']??[]).map((e)=>CategoryModel.fromJson(e)).toList();
-    status = json['status'];
-    message = json['message'];
+
 
   }
 
