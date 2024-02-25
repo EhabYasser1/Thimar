@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:untitled3/views/home/pages/main/view.dart';
-import 'package:untitled3/views/home/pages/my_acc/view.dart';
-import 'package:untitled3/views/home/pages/notification/view.dart';
 
-import 'pages/favorite/view.dart';
-import 'pages/talabat/view.dart';
+
+
+import 'pages_navigation_bar/favoritee.dart';
+import 'pages_navigation_bar/main_home.dart';
+import 'pages_navigation_bar/my_account.dart';
+import 'pages_navigation_bar/my_orders.dart';
+import 'pages_navigation_bar/notification/view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

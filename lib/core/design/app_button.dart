@@ -18,7 +18,7 @@ class _AppButtonState extends State<AppButton> {
       {
         return const Center(child: CircularProgressIndicator());
       }
-    return FilledButton(style: ButtonStyle(),
+    return    FilledButton(style: ButtonStyle(),
         onPressed:widget.onPressed,
         child: Text(
           widget.text, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),

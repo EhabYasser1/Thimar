@@ -6,6 +6,7 @@ class AppInput extends StatefulWidget {
   final double paddingBottom;
   final FormFieldValidator? validator;
   final TextEditingController? controller;
+  final Color fillColor,prefixColor;
 
   const AppInput(
       {super.key,
@@ -16,7 +17,7 @@ class AppInput extends StatefulWidget {
       this.paddingBottom = 16,
       this.isEnabled = true,
       this.validator,
-      this.controller});
+      this.controller,  this.fillColor=Colors.white,  this.prefixColor=Colors.white});
 
   @override
   State<AppInput> createState() => _AppInputState();
@@ -30,11 +31,14 @@ class _AppInputState extends State<AppInput> {
     return Padding(
       padding: EdgeInsets.only(bottom: widget.paddingBottom),
       child: TextFormField(
+
         controller: widget.controller,
         validator: widget.validator,
         enabled: widget.isEnabled,
         obscureText: passwordIsHidden && widget.isPassword,
         decoration: InputDecoration(
+          prefixIconColor:widget.prefixColor,
+          fillColor: widget.fillColor,
           labelText: widget.labelText,
           icon: widget.isPhone
               ? Container(

@@ -1,35 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled3/features/cart/bloc.dart';
 import 'package:untitled3/features/cart/events.dart';
-import 'package:untitled3/features/categories/event.dart';
+import 'package:untitled3/features/categories/events.dart';
 import 'package:untitled3/features/category_product/bloc.dart';
+import 'package:untitled3/features/favorite/bloc.dart';
 import 'package:untitled3/features/get_cities/bloc.dart';
 import 'package:untitled3/features/get_cities/events.dart';
+import 'package:untitled3/features/orders/current_order/bloc.dart';
+import 'package:untitled3/features/orders/current_order/events.dart';
 import 'package:untitled3/features/product/events.dart';
 import 'package:untitled3/features/slider/events.dart';
 
 import 'core/logic/help_navigator.dart';
-import 'features/cart/view.dart';
+import 'core/logic/kiwi.dart';
+
 import 'features/categories/bloc.dart';
 import 'features/product/bloc.dart';
 import 'features/slider/bloc.dart';
+import 'features/wallet/bloc.dart';
+import 'features/wallet/events.dart';
 import 'views/auth/confirm_code/bloc.dart';
 import 'views/auth/forgot_password/bloc.dart';
 import 'views/auth/login_view/bloc.dart';
 import 'views/auth/register_view/bloc.dart';
 
-import 'views/home/pages/favorite/bloc.dart';
-import 'views/home/pages/favorite/events.dart';
-import 'views/home/pages/main/view.dart';
+import 'views/home/other_pages/details_order.dart';
+
+
+
 import 'views/home/view.dart';
+import 'views/my_account_screens/wallet.dart';
 
 
 
 
 
-void main() {
+void main()  {
+  WidgetsFlutterBinding.ensureInitialized();
+
+ initKiwi();
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: getMyMaterialColor(),
+  ));
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 
@@ -40,9 +58,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => CategoriesBloc()..add(CategoryEvent()),),
-        BlocProvider(create: (context) => SlidersBloc()..add(SliderEvent()),),
-        BlocProvider(create: (context) => ProductsBloc()..add(ProductEvent()),),
+       // BlocProvider(create: (context) => CategoriesBloc()..add(CategoryEvent()),),
+     //   BlocProvider(create: (context) => SlidersBloc()..add(SliderEvent()),),
+      //  BlocProvider(create: (context) => ProductsBloc()..add(ProductEvent()),),
         BlocProvider(create: (context) => GetCitiesBloc()..add(CitiesEvent()),),
         BlocProvider(create: (context) => LoginBloc(),),
         BlocProvider(create: (context) => RegisterBloc(),),
@@ -51,6 +69,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CartBloc()..add(CartEvent()),),
         BlocProvider(create: (context) => FavoriteBloc(),),
         BlocProvider(create: (context) => CategoryProductBloc(),),
+        //BlocProvider(create: (context) => WalletBloc()..add(GetWalletEvent()),),
+       // BlocProvider(create: (context) => CurrentOrderBloc()..add(CurrentOrderEvent()),),
 
       ],
       child: ScreenUtilInit(
@@ -65,6 +85,7 @@ class MyApp extends StatelessWidget {
               Directionality(textDirection: TextDirection.rtl, child: child!),
           theme: ThemeData(
               scaffoldBackgroundColor: Colors.white,
+
               appBarTheme: AppBarTheme(
                   centerTitle:true ,
                   backgroundColor: Colors.white,
@@ -87,7 +108,9 @@ class MyApp extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
 
-                      )
+                      ),
+                      fixedSize: const Size.fromHeight(60)
+
                   )
               ),
               inputDecorationTheme:InputDecorationTheme(

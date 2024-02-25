@@ -1,17 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled3/core/logic/dio_helper.dart';
-import 'package:untitled3/features/categories/event.dart';
+import 'package:untitled3/features/categories/events.dart';
 import 'model.dart';
 import 'states.dart';
 
 class CategoriesBloc extends Bloc<CategoryEvents,CategoriesStates> {
-  CategoriesBloc() :super(CategoriesStates()){
+  final DioHelper dioHelper;
+  CategoriesBloc(this.dioHelper) :super(CategoriesStates()){
     on<CategoryEvent>(_getCategory);
   }
 
   Future<void> _getCategory(CategoryEvent event,Emitter<CategoriesStates> emit) async {
     emit(CategoriesLoadingState());
-    final response =await DioHelper().getData("categories");
+    final response =await dioHelper.getData("categories");
     if (response.isSuccess) {
       final model = CategoriesData.fromJson(response.response!.data);
       emit(CategoriesSuccessState(

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled3/core/logic/dio_helper.dart';
 import 'package:untitled3/core/logic/help_navigator.dart';
-import 'package:untitled3/features/category_product/event.dart';
+import 'package:untitled3/features/category_product/events.dart';
 import 'package:untitled3/features/category_product/states.dart';
 
 import 'model.dart';
@@ -15,7 +15,7 @@ class CategoryProductBloc extends Bloc<CategoryProductEvents,CategoryProductStat
     emit(CategoryProductLoadingStates());
     final response =await DioHelper().getData("products",data: {
       "category_id":event.model.id
-    },haveToken: true,);
+    },);
 
     if(response.isSuccess){
       final model=CategoryProductData.fromJson(response.response!.data);
